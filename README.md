@@ -1,7 +1,7 @@
 # smart-bicycle-lock
 
 <p align="center">
-  <img src="https://github.com/Jannik-Baar/smart-bicycle-lock/blob/4cbb8a5449e003ccec5fe744cd115a7c335684e0/sbl_banner.png" alt="Main tab">
+  <img src="https://github.com/Jannik-Baar/smart-bicycle-lock/blob/5f134b38aa892f56b5c401820956790e667b16d9/sbl_greek2.png" alt="Main tab">
 </p>
 
 The **'smart-bicycle-lock'** is a University project that combines NFC technology, an Android web app, and a custom-designed models created in Tinkercad. This GitHub project aims to provide a secure and convenient solution for bicycle owners who want to protect their bikes from theft while embracing the power of modern technology.
