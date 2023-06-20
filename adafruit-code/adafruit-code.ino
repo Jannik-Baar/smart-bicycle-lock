@@ -6,8 +6,14 @@
 #define SS_PIN          22         // Configurable, see typical pin layout above
 
 MFRC522 mfrc522(SS_PIN, RST_PIN);  // Create MFRC522 instance
-int SPU = 2048; // Schritte pro Umdrehung.
+int SPU = 2048;
 Stepper Motor(SPU, 13,11,12,10);
+bool currentLockState = false;
+String authorizedUIDs[] = {
+  "8E 86 D2 AA"
+};
+
+bool isAuthorized(String uid);
 
 void setup() {
 	Serial.begin(9600);		// Initialize serial communications with the PC
@@ -43,16 +49,24 @@ void loop() {
      content.concat(String(mfrc522.uid.uidByte[i], HEX));
   }
   Serial.println();
-  Serial.print("Message : ");
-  content.toUpperCase();
+  // Serial.print("Message : ");
+  // content.toUpperCase();
 
   Serial.println(content.substring(1));
-  if (content.substring(1) == "8E 86 D2 AA") //change here the UID of the card/cards that you want to give access
-  {
-    Serial.println("Authorized access111");
+  if (isAuthorized(content.substring(1))) {
+    Serial.println("Authorized access");
     Serial.println();
     // mfrc522.PICC_DumpToSerial(&(mfrc522.uid));
-    Motor.step(-1 * 4096); // Der Motor macht durch das Minuszeichen 2048 Schritte in die andere Richtung.
+    if (currentLockState)  {
+      Serial.println("Locking...");
+      Motor.step(-1 * 4096);
+    }
+    else {
+      Serial.println("Unlocking...");
+      Motor.step(4096);
+    }
+
+    currentLockState = !currentLockState;
     delay(3000);
   }
   else{
@@ -61,4 +75,13 @@ void loop() {
     // mfrc522.PICC_DumpToSerial(&(mfrc522.uid));
     delay(3000);
   }
+}
+
+bool isAuthorized(String uid) {
+  for (size_t i = 0; i < sizeof(authorizedUIDs) / sizeof(authorizedUIDs[0]); i++) {
+    if (uid == authorizedUIDs[i]) {
+      return true;
+    }
+  }
+  return false;
 }
