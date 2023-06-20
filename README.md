@@ -14,12 +14,21 @@ The **'smart-bicycle-lock'** is a University project that combines NFC technolog
 ## Usage
 
 ```bash
-git clone https://github.com/acariaC/hex2RGB.git
-cd hex2RGB
-python3 hex2RGB.py
+Make sure you have Node.js installed on your system.
 
-Enter hex colors: #C0FFEE #ABCDEF
-[[192, 255, 238], [171, 205, 239]]
+1. Open your terminal or command prompt.
+2. Clone the repository:
+     git clone https://github.com/Jannik-Baar/smart-bicycle-lock.git
+3. Change into the directory:
+    cd smart-bicycle-lock
+4. Install all dependencies:
+    npm install
+5. Set the environment variable:
+    HTTPS=true npm run start
+6. Find out your systems IP:
+    ifconfig (Unix) or ipconfig (Windows)
+7. Enter your IP on your smartphone:
+    https://<yourIP>:3000
 ```
 
 ## Requirements
