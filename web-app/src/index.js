@@ -1,20 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import {StrictMode} from 'react';
+import {createRoot} from 'react-dom/client';
 import App from './App';
+import Footer from "./Footer";
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import theme from './theme';
 import CssBaseline from '@mui/material/CssBaseline';
 import {ThemeProvider} from '@mui/material/styles';
+import Box from '@mui/material/Box';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const root = createRoot(document.getElementById('root'));
 root.render(
-    <React.StrictMode>
+    <StrictMode>
         <ThemeProvider theme={theme}>
-            <CssBaseline/>
-            <App/>
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    minHeight: '100vh',
+                }}
+            >
+                <CssBaseline/>
+                <App/>
+                <Footer/>
+            </Box>
         </ThemeProvider>
-    </React.StrictMode>
+    </StrictMode>
 );
 
 // If you want your app to work offline and load faster, you can change
